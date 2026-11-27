@@ -4,7 +4,7 @@
 // directory and writes /output/dossier.json with buildDossier from the
 // kit's vendor/makefun-frontend.ts. Standard library only, no network.
 
-import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-frontend.ts';
@@ -21,8 +21,12 @@ const caps = {
 };
 
 function main(): void {
-  rmSync(outputDir, { recursive: true, force: true });
+  // Never remove outputDir itself: on the grader it is a mounted volume and
+  // rmSync on the mount point throws EBUSY. Only clear its children.
   mkdirSync(outputDir, { recursive: true });
+  for (const child of readdirSync(outputDir)) {
+    rmSync(join(outputDir, child), { recursive: true, force: true });
+  }
   cpSync(join(repoRoot, 'app'), join(outputDir, 'app'), { recursive: true });
   cpSync(join(repoRoot, 'screenshots'), join(outputDir, 'screenshots'), { recursive: true });
   const dossier: Uint8Array = buildDossier(outputDir, caps);
