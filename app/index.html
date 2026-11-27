@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deal Lantern — Black Friday Deal Finder 2026</title>
+<meta name="description" content="Real Black Friday and Cyber Monday deals, checked by hand on 27 November 2026. Search and filter by category, store and discount.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">&#9679;</span>
+      <div>
+        <h1>Deal Lantern</h1>
+        <p class="tagline">Black Friday &amp; Cyber Monday deals, checked by hand</p>
+      </div>
+    </div>
+    <p class="checked-note">Every price below was read at the named store or in a deals source naming that store on <strong>27 November 2026</strong>. Prices can change; the store page is the final word.</p>
+  </div>
+</header>
+
+<main>
+  <section class="controls" aria-label="Search and filters">
+    <div class="search-row">
+      <label class="search-box">
+        <span class="visually-hidden">Search deals</span>
+        <input id="search" type="search" placeholder="Search deals — try &quot;headphones&quot;, &quot;Dyson&quot;, &quot;LEGO&quot;&hellip;" autocomplete="off">
+      </label>
+      <label class="sort-box">
+        <span>Sort</span>
+        <select id="sort">
+          <option value="verdict">Best verdict first</option>
+          <option value="discount">Biggest discount</option>
+          <option value="price-asc">Lowest price</option>
+          <option value="price-desc">Highest price</option>
+          <option value="name">Name A–Z</option>
+        </select>
+      </label>
+    </div>
+    <div class="filter-row">
+      <div class="chip-group" id="category-chips" role="group" aria-label="Category"></div>
+      <div class="select-group">
+        <label>Store
+          <select id="store-filter">
+            <option value="">All stores</option>
+          </select>
+        </label>
+        <label>Discount
+          <select id="discount-filter">
+            <option value="0">Any discount</option>
+            <option value="20">20% off or more</option>
+            <option value="30">30% off or more</option>
+            <option value="40">40% off or more</option>
+            <option value="50">50% off or more</option>
+          </select>
+        </label>
+        <label>Verdict
+          <select id="verdict-filter">
+            <option value="">Any verdict</option>
+            <option value="new-low">New low</option>
+            <option value="strong">Strong deal</option>
+            <option value="good">Good deal</option>
+            <option value="routine">Routine sale</option>
+          </select>
+        </label>
+      </div>
+    </div>
+    <p class="result-line"><span id="result-count"></span> <span id="active-filters"></span></p>
+  </section>
+
+  <section class="top-picks" aria-label="Top picks">
+    <h2>Top picks — the strongest prices we found</h2>
+    <ol id="top-picks" class="top-list"></ol>
+  </section>
+
+  <section aria-label="All deals">
+    <h2 class="section-title">All deals</h2>
+    <div id="deal-grid" class="deal-grid"></div>
+    <p id="empty-state" class="empty-state" hidden>No deals match those filters. Try clearing the search or lowering the discount.</p>
+  </section>
+
+  <section class="how" aria-label="How we check deals">
+    <h2>How a deal earns its verdict</h2>
+    <ul class="verdict-key">
+      <li><span class="badge badge-new-low">NEW LOW</span> Lowest price we have seen for this product, against its usual price and past sale prices.</li>
+      <li><span class="badge badge-strong">STRONG DEAL</span> A deep cut (usually 40% or more) or a price well below the usual street price.</li>
+      <li><span class="badge badge-good">GOOD DEAL</span> A real saving, typically 20–39% off the usual price.</li>
+      <li><span class="badge badge-routine">ROUTINE SALE</span> A small cut, or a price this product hits often — fine, but not special.</li>
+    </ul>
+    <p>Each card shows where the price was read and when. A store link goes straight to the product at that store.</p>
+  </section>
+</main>
+
+<footer>
+  <p>Deal Lantern — an independent deal finder built for Black Friday 2026. Not affiliated with any store named here. Store names and product names belong to their owners.</p>
+  <p>All prices in US dollars, checked 27 November 2026. Deals end when the store ends them.</p>
+</footer>
+
+<script type="module" src="finder.js"></script>
+</body>
+</html>

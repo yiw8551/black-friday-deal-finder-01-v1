@@ -1,0 +1,339 @@
+/* Deal Lantern — Black Friday 2026. One job: make every deal readable at a glance. */
+
+:root {
+  --ink: #1c2433;
+  --muted: #5b6472;
+  --paper: #f6f3ec;
+  --card: #ffffff;
+  --line: #e3ddd0;
+  --navy: #16233a;
+  --navy-deep: #0e1727;
+  --amber: #f5a623;
+  --amber-deep: #c77f0a;
+  --green: #1e7a46;
+  --green-soft: #e2f3e8;
+  --teal: #0f766e;
+  --teal-soft: #ddf2ef;
+  --blue: #1d4ed8;
+  --blue-soft: #e3ebfd;
+  --grey-soft: #eceff1;
+  --red: #b3261e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: #f8f5ee;
+  padding: 28px 20px 22px;
+  border-bottom: 5px solid var(--amber);
+}
+
+.masthead-inner { max-width: 1180px; margin: 0 auto; }
+
+.brand { display: flex; align-items: center; gap: 14px; }
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--amber);
+  color: var(--navy-deep);
+  font-size: 30px;
+  line-height: 1;
+  flex: none;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+}
+
+.tagline { margin: 3px 0 0; color: #c9d2e0; font-size: 15px; }
+
+.checked-note {
+  margin: 16px 0 0;
+  max-width: 760px;
+  color: #dbe2ee;
+  font-size: 14px;
+}
+
+.checked-note strong { color: var(--amber); }
+
+/* ---------- layout ---------- */
+
+main { max-width: 1180px; margin: 0 auto; padding: 0 20px 40px; }
+
+h2 { font-size: 21px; margin: 0 0 12px; }
+.section-title { margin-top: 30px; }
+
+/* ---------- controls ---------- */
+
+.controls {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 18px 12px;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(22, 35, 58, 0.06);
+}
+
+.search-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.search-box { flex: 1 1 420px; }
+
+.search-box input {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 16px;
+  border: 2px solid #c8cdd6;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.search-box input:focus { outline: 3px solid var(--amber); border-color: var(--amber-deep); }
+
+.sort-box {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 600; font-size: 14px; color: var(--muted);
+}
+
+select {
+  padding: 10px 8px;
+  font-size: 15px;
+  border: 2px solid #c8cdd6;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.filter-row {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.chip-group { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.chip {
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1.5px solid #b9bfc9;
+  background: #fff;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chip:hover { border-color: var(--amber-deep); }
+.chip[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+.select-group { display: flex; gap: 12px; flex-wrap: wrap; margin-left: auto; }
+
+.select-group label {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 14px; font-weight: 600; color: var(--muted);
+}
+
+.result-line { margin: 12px 0 0; font-size: 14px; color: var(--muted); }
+.result-line strong { color: var(--ink); }
+
+/* ---------- top picks ---------- */
+
+.top-picks { margin-top: 30px; }
+
+.top-list {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.top-list li {
+  background: var(--navy);
+  color: #f2efe7;
+  border-radius: 10px;
+  padding: 14px 16px;
+  border-left: 5px solid var(--amber);
+}
+
+.top-list .rank {
+  font-size: 12px; font-weight: 800; letter-spacing: 1px;
+  color: var(--amber); text-transform: uppercase;
+}
+
+.top-list .pick-name { display: block; margin-top: 4px; font-weight: 700; font-size: 15px; }
+.top-list .pick-price { display: block; margin-top: 6px; font-size: 14px; color: #dbe2ee; }
+.top-list .pick-price b { color: #fff; font-size: 19px; }
+.top-list .pick-store { font-size: 13px; color: #aeb9cc; }
+
+/* ---------- deal cards ---------- */
+
+.deal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.deal {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px rgba(22, 35, 58, 0.05);
+}
+
+.deal-top { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+
+.category {
+  font-size: 12px; font-weight: 800; letter-spacing: 0.6px;
+  text-transform: uppercase; color: var(--teal);
+}
+
+.discount-pill {
+  flex: none;
+  background: var(--red);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.deal h3 { margin: 8px 0 2px; font-size: 17px; line-height: 1.3; }
+.store { margin: 0; font-size: 14px; color: var(--muted); font-weight: 600; }
+
+.prices { display: flex; align-items: baseline; gap: 10px; margin: 12px 0 4px; }
+.sale { font-size: 28px; font-weight: 800; color: var(--ink); }
+.usual { font-size: 15px; color: var(--muted); text-decoration: line-through; }
+.save { font-size: 14px; font-weight: 700; color: var(--green); }
+
+.badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  align-self: flex-start;
+}
+
+.badge-new-low { background: var(--green-soft); color: var(--green); }
+.badge-strong { background: var(--teal-soft); color: var(--teal); }
+.badge-good { background: var(--blue-soft); color: var(--blue); }
+.badge-routine { background: var(--grey-soft); color: #54606e; }
+
+.verdict-note { margin: 8px 0 0; font-size: 13.5px; color: var(--muted); }
+
+.also-at { margin: 8px 0 0; font-size: 13.5px; color: var(--muted); }
+.also-at b { color: var(--ink); }
+
+.deal-foot { margin-top: auto; padding-top: 12px; }
+
+.check-line { margin: 0 0 10px; font-size: 12.5px; color: #7a828e; }
+
+.store-link {
+  display: block;
+  text-align: center;
+  background: var(--amber);
+  color: var(--navy-deep);
+  font-weight: 800;
+  text-decoration: none;
+  padding: 11px 12px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.store-link:hover { background: #ffb63d; }
+
+.promo { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
+.promo code {
+  background: var(--grey-soft);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.empty-state {
+  background: var(--card);
+  border: 1px dashed #b9bfc9;
+  border-radius: 10px;
+  padding: 26px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---------- how it works ---------- */
+
+.how {
+  margin-top: 34px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px 22px;
+}
+
+.verdict-key { list-style: none; margin: 0 0 10px; padding: 0; }
+.verdict-key li { margin: 10px 0; font-size: 15px; }
+.verdict-key .badge { margin: 0 6px 0 0; }
+.how p { margin: 6px 0 0; color: var(--muted); font-size: 14.5px; }
+
+/* ---------- footer ---------- */
+
+footer {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px 34px;
+  color: #7a828e;
+  font-size: 13px;
+}
+
+footer p { margin: 4px 0; }
+
+/* ---------- phone ---------- */
+
+@media (max-width: 900px) {
+  .deal-grid { grid-template-columns: repeat(2, 1fr); }
+  .top-list { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .brand h1 { font-size: 27px; }
+  .masthead { padding: 20px 16px 16px; }
+  main { padding: 0 14px 30px; }
+  .deal-grid { grid-template-columns: 1fr; }
+  .select-group { margin-left: 0; }
+  .sale { font-size: 25px; }
+  .controls { padding: 14px; }
+}
