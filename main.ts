@@ -31,6 +31,25 @@ function main(): void {
   if (!readBack.equals(Buffer.from(dossier))) {
     throw new Error('main.ts: dossier.json did not round-trip');
   }
+  const parsed: unknown = JSON.parse(readBack.toString('utf-8'));
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    throw new Error('main.ts: dossier.json did not parse as a JSON object');
+  }
+  const images: unknown = (parsed as { images?: unknown }).images;
+  if (!Array.isArray(images) || images.length === 0) {
+    throw new Error('main.ts: dossier.json lists no screenshots');
+  }
+  for (const image of images) {
+    const name: unknown = (image as { name?: unknown }).name;
+    const base64: unknown = (image as { base64?: unknown }).base64;
+    if (typeof name !== 'string' || typeof base64 !== 'string') {
+      throw new Error('main.ts: dossier.json holds a screenshot entry without a name or base64 bytes');
+    }
+    const shot: Buffer = readFileSync(join(outputDir, 'screenshots', name));
+    if (shot.toString('base64') !== base64) {
+      throw new Error(`main.ts: screenshots/${name} in /output does not match the dossier`);
+    }
+  }
   console.log(`main.ts: wrote ${outputDir} (dossier.json ${dossier.length} bytes)`);
 }
 
